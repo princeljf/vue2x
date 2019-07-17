@@ -1,6 +1,6 @@
 <template>
     <div>
-        qqsg
+        物品解构
     </div>
 </template>
 <script>
