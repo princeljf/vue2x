@@ -12,6 +12,7 @@ export default {
 
 <style>
 *{ margin: 0; padding: 0; }
+ul,li{ list-style: none; }
 .app-main{
   width: 53%;
   min-width: 320px;

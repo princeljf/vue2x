@@ -5,8 +5,8 @@ const DefDetailObj = {
     count: 0, money: 0, price:0
 };
 
-Array.prototype.max = function(){
-    let arr = this;
+const maxFn = function(data){
+    let arr = data || this;
     let max = 0;
     for(let i in arr){
         arr[i]>max && (max=arr[i]);
@@ -70,7 +70,7 @@ const getOneLevel = (nameStr, goods, deep=0)=>{
             deep = getOneLevel(n, goods, deep)+1;
             levelArr.push( deep );
         }
-        deep = levelArr.max();
+        deep = maxFn(levelArr);
     }
     return deep;
 };
@@ -164,21 +164,23 @@ const getGoodsCount = (data)=>{
 // let d = getGoodsAnalyse('精致凿', baseGoods);
 // let d = getGoodsAnalyse('金之微尘', baseGoods);
 // let d = getGoodsAnalyse('金之精粹', baseGoods);
-let ga = getGoodsAnalyse('财富之源', baseGoods);
-console.log('ga = ', ga);
-let gc = getGoodsCount( ga );
-console.log('gc = ', gc);
+// let ga = getGoodsAnalyse('财富之源', baseGoods);
+// console.log('ga = ', ga);
+// let gc = getGoodsCount( ga );
+// console.log('gc = ', gc);
 //Goods对象
 const Goods = ((bsg)=>{
     let getGood = (name)=>{
         return bsg[name];
     };
     return {
-        goods: bsg,     //所有物品基础数据
+        baseGoods: bsg,     //所有物品基础数据
         getPrice: getOnePrice, //获取单价
         getGood: getGood,   //获取物品基础数据
-        getGoods: getGoodsAnalyse,    //获取物品完整分析数据
         getLevel: getOneLevel,  //获取物品级别
+
+        getGoods: getGoodsAnalyse,    //获取物品完整分析数据
+        getCounts: getGoodsCount,    //获取物品各等级合计数据
     }
 })(baseGoods);
 export default Goods
