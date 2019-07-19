@@ -1,5 +1,5 @@
 <template>
-    <div class="lhh-recursion-tpl">
+    <div v-show="arr.length" class="lhh-recursion-tpl">
         <ul class="goods-box">
             <li v-for="(item,i) in arr" :key="i" class="goods-line">
                 <span>lv</span><span>{{ item[keys.level] }}</span><span> - </span>

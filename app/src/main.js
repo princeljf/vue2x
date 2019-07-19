@@ -6,6 +6,12 @@ import router from './router'
 import $ from 'jquery'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap/dist/js/bootstrap.js'
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+Vue.use(ElementUI, { size: 'small', zIndex: 3000 });
+
+// import { Button, Select } from 'element-ui';//按需引入
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
