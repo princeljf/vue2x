@@ -1,5 +1,5 @@
 import LHH from '../js/LHH';
-import baseGoods from './baseGoods';
+import BaseGoods from './baseGoods';
 const DefDetailArr = ['count', 'money', 'price'];
 const DefDetailObj = {
     count: 0, money: 0, price:0
@@ -160,14 +160,34 @@ const getGoodsCount = (data)=>{
     }
     return goods;
 };
-//测试数据
-// let d = getGoodsAnalyse('精致凿', baseGoods);
-// let d = getGoodsAnalyse('金之微尘', baseGoods);
-// let d = getGoodsAnalyse('金之精粹', baseGoods);
-// let ga = getGoodsAnalyse('财富之源', baseGoods);
-// console.log('ga = ', ga);
-// let gc = getGoodsCount( ga );
-// console.log('gc = ', gc);
+
+const getGoodsKeys = (baseGoods)=>{
+    let bsg = baseGoods || {};
+    let arr = [];
+    for(let key in bsg){
+        arr.push( key );
+    }
+    return arr;
+};
+
+const getLike = (type='el')=>{
+    if(!type){ return false };
+    let data = BaseGoods;
+    let arr = [];
+    switch(type){
+        case 'el':
+            for(let key in data){
+                arr.push({
+                    value: key
+                });
+            }
+            break;
+        default:
+    }
+    
+    return arr;
+};
+
 //Goods对象
 const Goods = ((bsg)=>{
     let getGood = (name)=>{
@@ -175,6 +195,8 @@ const Goods = ((bsg)=>{
     };
     return {
         baseGoods: bsg,     //所有物品基础数据
+        keys: getGoodsKeys(bsg),//物品数组
+        getLike: getLike,//模糊查询
         getPrice: getOnePrice, //获取单价
         getGood: getGood,   //获取物品基础数据
         getLevel: getOneLevel,  //获取物品级别
@@ -182,5 +204,5 @@ const Goods = ((bsg)=>{
         getGoods: getGoodsAnalyse,    //获取物品完整分析数据
         getCounts: getGoodsCount,    //获取物品各等级合计数据
     }
-})(baseGoods);
+})(BaseGoods);
 export default Goods
