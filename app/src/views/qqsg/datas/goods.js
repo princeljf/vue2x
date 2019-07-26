@@ -1,5 +1,4 @@
 import LHH from '../js/LHH';
-import BaseGoods from './baseGoods';
 const DefDetailArr = ['count', 'money', 'price'];
 const DefDetailObj = {
     count: 0, money: 0, price:0
@@ -170,9 +169,9 @@ const getGoodsKeys = (baseGoods)=>{
     return arr;
 };
 
-const getLike = (type='el')=>{
+const getLike = (baseGoods, type='el')=>{
     if(!type){ return false };
-    let data = BaseGoods;
+    let data = baseGoods;
     let arr = [];
     switch(type){
         case 'el':
@@ -189,14 +188,14 @@ const getLike = (type='el')=>{
 };
 
 //Goods对象
-const Goods = ((bsg)=>{
+const Goods = (baseGoods)=>{
     let getGood = (name)=>{
         return bsg[name];
     };
     return {
-        baseGoods: bsg,     //所有物品基础数据
-        keys: getGoodsKeys(bsg),//物品数组
-        getLike: getLike,//模糊查询
+        baseGoods: baseGoods,     //所有物品基础数据
+        keys: getGoodsKeys(baseGoods),//物品数组
+        getLike: getLike.bind(baseGoods),//模糊查询
         getPrice: getOnePrice, //获取单价
         getGood: getGood,   //获取物品基础数据
         getLevel: getOneLevel,  //获取物品级别
@@ -204,5 +203,5 @@ const Goods = ((bsg)=>{
         getGoods: getGoodsAnalyse,    //获取物品完整分析数据
         getCounts: getGoodsCount,    //获取物品各等级合计数据
     }
-})(BaseGoods);
+};
 export default Goods
