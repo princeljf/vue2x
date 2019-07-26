@@ -9,8 +9,8 @@
         <div class="input-search-box form-inline">
             <Autocomplete :data="likeArr" @select="selectAutocomplete"></Autocomplete>
         </div>
-        <!-- <Recursion :d="ga"></Recursion>
-        <GoodsCount :d="gc"></GoodsCount> -->
+        <!-- <Recursion :d="ga"></Recursion> -->
+        <GoodsCount :d="gc"></GoodsCount>
     </div>
 </template>
 <script>
@@ -25,7 +25,10 @@ export default {
     data(){
         return {
             QQSG: qqsg_G,
-            likeArr:[]
+            baseGoods: qqsg_G.BaseGoods.init(qqsg_G),
+            likeArr:[],
+            ga: {},
+            gc: {}
         }
     },
     watch: {
@@ -44,20 +47,20 @@ export default {
         Tabs
     },
     created() {
-        // this.likeArr = Goods(this.QQSG).getLike( this.QQSG.bsg );//element-autocomplete-data
-        console.log(Goods(this.QQSG));
+        this.likeArr = Goods(this.baseGoods).getLike( this.baseGoods );//element-autocomplete-data
     },
     methods: {
         //选择物品触发回调事件
         selectAutocomplete(item){
-            // let name = item.value;
-            // this.btnSearchInput(name);
+            let name = item.value;
+            this.btnSearchInput(name);
         },
         //搜索物品
         btnSearchInput(searchName){
             if(!searchName){ return false; }
-            // let ga = Goods.getGoods(searchName, this.gds.baseGoods);
-            // let gc = Goods.getCounts( ga );
+            let ga = Goods(this.baseGoods).getGoods(searchName, this.baseGoods);
+            let gc = Goods(this.baseGoods).getCounts( ga );
+            console.log('ga = ', ga, 'gc = ', gc);
             // this.ga = ga;
             // this.gc = gc;
         },

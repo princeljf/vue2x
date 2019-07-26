@@ -195,7 +195,7 @@ const Goods = (baseGoods)=>{
     return {
         baseGoods: baseGoods,     //所有物品基础数据
         keys: getGoodsKeys(baseGoods),//物品数组
-        getLike: getLike.bind(baseGoods),//模糊查询
+        getLike: getLike,//模糊查询
         getPrice: getOnePrice, //获取单价
         getGood: getGood,   //获取物品基础数据
         getLevel: getOneLevel,  //获取物品级别
@@ -204,4 +204,4 @@ const Goods = (baseGoods)=>{
         getCounts: getGoodsCount,    //获取物品各等级合计数据
     }
 };
-export default Goods
+export default Goods;
