@@ -5,11 +5,11 @@
             <p><span>三国点：</span><input v-model="QQSG.SGD" type="text"></p>
             <p><span>三国币：</span><input v-model="QQSG.SGB" type="text"></p>
         </div>
-        <Tabs :baseGoods="QQSG.BaseGoods.init(QQSG)"></Tabs>
+        <Tabs :baseGoods="baseGoods"></Tabs>
         <div class="input-search-box form-inline">
             <Autocomplete :data="likeArr" @select="selectAutocomplete"></Autocomplete>
         </div>
-        <!-- <Recursion :d="ga"></Recursion> -->
+        <Recursion :d="ga"></Recursion>
         <GoodsCount :d="gc"></GoodsCount>
     </div>
 </template>
@@ -47,7 +47,7 @@ export default {
         Tabs
     },
     created() {
-        this.likeArr = Goods(this.baseGoods).getLike( this.baseGoods );//element-autocomplete-data
+        this.likeArr = Goods.getLike( this.baseGoods );//element-autocomplete-data
     },
     methods: {
         //选择物品触发回调事件
@@ -58,11 +58,10 @@ export default {
         //搜索物品
         btnSearchInput(searchName){
             if(!searchName){ return false; }
-            let ga = Goods(this.baseGoods).getGoods(searchName, this.baseGoods);
-            let gc = Goods(this.baseGoods).getCounts( ga );
-            console.log('ga = ', ga, 'gc = ', gc);
-            // this.ga = ga;
-            // this.gc = gc;
+            let ga = Goods.getGoods( searchName, this.baseGoods );
+            let gc = Goods.getCounts( ga );
+            this.ga = ga;
+            this.gc = gc;
         },
     },
 }

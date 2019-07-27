@@ -187,21 +187,19 @@ const getLike = (baseGoods, type='el')=>{
     return arr;
 };
 
+//获取物品基础数据
+const getGood = (name, baseGoods)=>{
+    return baseGoods[name];
+};
 //Goods对象
-const Goods = (baseGoods)=>{
-    let getGood = (name)=>{
-        return bsg[name];
-    };
-    return {
-        baseGoods: baseGoods,     //所有物品基础数据
-        keys: getGoodsKeys(baseGoods),//物品数组
-        getLike: getLike,//模糊查询
-        getPrice: getOnePrice, //获取单价
-        getGood: getGood,   //获取物品基础数据
-        getLevel: getOneLevel,  //获取物品级别
+const Goods = {
+    keys: getGoodsKeys,//物品数组
+    getLike: getLike,//模糊查询
+    getPrice: getOnePrice, //获取单价
+    getGood: getGood,   //获取物品基础数据
+    getLevel: getOneLevel,  //获取物品级别
 
-        getGoods: getGoodsAnalyse,    //获取物品完整分析数据
-        getCounts: getGoodsCount,    //获取物品各等级合计数据
-    }
+    getGoods: getGoodsAnalyse,    //获取物品完整分析数据
+    getCounts: getGoodsCount,    //获取物品各等级合计数据
 };
 export default Goods;
