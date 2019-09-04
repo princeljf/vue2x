@@ -9,6 +9,11 @@ const init = (QQSG)=>{
         '点换币/1': { price:this.QQSG.d2b },
         '币换点/百万': { price:this.QQSG.b2d*1000000 },
 
+
+    '高级聚灵金币':{ price:225000,  },
+    '高级聚灵石':{ price:28*this.QQSG.d2b,  },
+    '高级聚灵':{ '高级聚灵金币':1, '高级聚灵石':1 },
+
     '1f兑换金币':{ price:660000 },
     '2f兑换金币':{ price:900000 },
     '一级符咒碎片':{ price:9000 },
